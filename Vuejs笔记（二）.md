@@ -35,3 +35,7 @@ methods: {
 1. 计算属性是基于依赖关系的，message更新才计算，method则每次都重新计算。
 2. 计算属性是基于它们的依赖进行缓存的。
 3. 调用也不同computed的：```<p>{{reversedMessage}}</p>``` ，methods的：```<p>{{reversedMessage()}}</p>```
+
+4. v-show
+
+![](https://github.com/gruad/growth/blob/master/images/v-show.png)
