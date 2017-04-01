@@ -39,3 +39,8 @@ methods: {
 4. v-show
 
 ![](https://github.com/gruad/growth/blob/master/images/v-show.png)
+
+5. method
+
+**methods只有纯粹的数据逻辑，而不是去处理DOM事件细节。**
+
