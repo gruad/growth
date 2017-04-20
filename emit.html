@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>demo12</title>
+    <script type="text/javascript" src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- Vue 组件的学习 -->
+    <div id="example">
+        <p>{{total}}</p>
+        <increment-counter v-on:increment="incrementTotal"></increment-counter>
+        <increment-counter v-on:increment="incrementTotal"></increment-counter>
+    </div>
+    <script type="text/javascript">
+    Vue.component("increment-counter", {
+        template: '<button v-on:click="increment">{{counter}}</button>',
+        data: function() {
+            return {
+                counter: 0
+            }
+        },
+        methods: {
+            increment: function() {
+                this.counter += 1;
+                this.$emit('increment');
+            }
+        }
+    })
+
+    new Vue({
+        el: "#example",
+        data: {
+            total: 0
+        },
+        methods: {
+            incrementTotal: function() {
+                this.total += 1
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>

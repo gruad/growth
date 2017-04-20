@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>vue.js的todoMVC学习</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+<section class="todoapp">
+    <header class="header">
+        <h1>todos</h1>
+        <input class="new-todo" autofocus autocomplete="off" placeholder="需要做什么?" v-model="newTodo" v-on:keyup.enter="addTodo">
+    </header>
+    <section class="main" v-show="todos.length" v-cloak>
+        <input class="toggle-all" type="checkbox" v-model="allDone">
+        <ul class="todo-list">
+            <li v-for="todo in filteredTodos" class="todo" :key="todo.id" :class="{completed:todo.completed,editing:todo==editedTodo}">
+                <div class="view">
+                    <input class="toggle" type="checkbox" v-model="todo.completed">
+                    <label v-on:dblclick="editTodo(todo)">{{todo.title}}</label>
+                    <button class="destroy" v-on:click="removeTodo(todo)"></button>
+                </div>
+                <input class="edit" type="text" v-model="todo.title" v-todo-focus="todo==editedTodo" v-on:blur="doneEdit(todo)" v-on:keyup.enter="doneEdit(todo)" v-on:keyup.esc="canceEdit(todo)">
+            </li>
+        </ul>
+    </section>
+    <footer class="footer" v-show="todos.length" v-cloak>
+            <span class="todo-count">
+        		<strong>{{remaining}}</strong>{{remaining|pluralize}}离开
+        	</span>
+        <ul class="filters">
+            <li><a href="#/all" :class="{selected:visibility=='all'}">所有</a></li>
+            <li><a href="#/active" :class="{selected:visibility=='active'}">进行中</a></li>
+            <li><a href="#/completed" :class="{selected:visibility=='completed'}">已完成</a></li>
+        </ul>
+        <button class="clear-completed" v-on:click="removeCompleted" v-show="todos.length>remaining">清除已完成</button>
+    </footer>
+</section>
+<footer class="info">
+    <p>双击编辑待办事项</p>
+    <p>作者<a href="http://evanyou.me">Evan You</a></p>
+    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+</footer>
+</body>
+<script type="text/javascript">
+    var STORAGE_KEY='todos-vuejs-2.0'
+    var todoStorage={
+        fetch:function(){
+            var todos=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]')
+            todos.forEach(function(todo,index){
+                todo.id=index
+            })
+            todoStorage.uid=todos.length
+            return todos
+        },
+        save:function(todos){
+            return localStorage.setItem(STORAGE_KEY,JSON.stringify(todos))
+        }
+    }
+
+
+    var filters={
+        all:function(todos){
+            return todos
+        },
+        active:function(todos){
+            return todos.filter(function(todo){
+                return !todo.completed
+            })
+        },
+        completed:function(todos){
+            return todos.filter(function(todo){
+                return todo.completed
+            })
+        }
+    }
+
+    var app=new Vue({
+        data:{
+            todos:todoStorage.fetch(),
+            newTodo:'',
+            editedTodo:null,
+            visibility:'all'
+        },
+        watch:{
+            todos:{
+                handler:function(todos){
+                    todoStorage.save(todos)
+                },
+                deep:true
+            }
+        },
+        completed:{
+            filteredTodos:function(){
+                return filters[this.visibility](this.todos)
+            },
+            remaining:function(){
+                return filters.active(this.todos).length
+            },
+            allDone:function(){
+                get:function(){
+                    return this.remaining===0
+                },
+                set:function(value){
+                    this.todos.forEach(function(todo){
+                        todo.completed=value
+                    })
+                }
+            }
+        },
+        methods:{
+            addTodo:function(){
+                var value=this.newTodo&&this.newTodo.trim()
+                if(!value){
+                    return
+                }
+                this.todos.push({
+                    id:todoStorage.uid++,
+                    title:value,
+                    completed:false
+                }),
+            }
+        }
+
+    })
+
+</script>
+</html>

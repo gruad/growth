@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>demo12</title>
+    <script type="text/javascript" src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- Vue 组件的学习 -->
+    
+</body>
+<script type="text/javascript">
+    // defined a mix object
+    var child={
+        created:function(){
+            this.hello()
+        },
+        methods:{
+            hello:function(){
+                console.log('hello from mix');
+            }
+        }
+    }
+
+    // defined a mix component
+    var Component=Vue.extend({
+        mixins:[child]
+    })
+    var component=new Component()
+</script>
+
+</html>
