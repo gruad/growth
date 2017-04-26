@@ -8,7 +8,7 @@ var arr=[['小猫','小狗'],['12','13']];
     ['小狗','12'],
     ['小狗','13']
 ];
-```javascript
+```
 var array = [['A', 'B', 'C'], 'F', ['D', 'E'], 1, 'kyo', 'yugi111'];
 var len = array.length;
 var results = [];
