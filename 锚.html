@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>锚点</title>
+</head>
+<body>
+<ul>
+    <li><a href="javascript:void(0);" onclick="naver('A')">锚点A</a></li>
+    <li><a href="javascript:void(0);" onclick="naver('B')">锚点B</a></li>
+    <li><a href="javascript:void(0);" onclick="naver('C')">锚点C</a></li>
+    <li><a href="javascript:void(0);" onclick="naver('D')">锚点D</a></li>
+</ul>
+<div style="background-color: #f60; height: 400px;" id="A">
+    AAA
+</div>
+<div style="background-color: #f06; height: 400px;" id="B">
+    BBB
+</div>
+<div style="background-color: #60f; height: 400px;" id="C">
+    CCC
+</div>
+<div style="background-color: #06f; height: 400px;" id="D">
+    DDD
+</div>
+<script>
+    //设置锚点
+    function naver(id){
+        var obj = document.getElementById(id);
+//        距离顶部的高度
+        var oPos = obj.offsetTop;
+//        window.scrollTo(xAxis,yAxis)
+        return window.scrollTo(0, oPos-36);
+    }
+</script>
+</body>
+</html>

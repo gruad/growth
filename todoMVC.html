@@ -11,24 +11,28 @@
 <section class="todoapp">
     <header class="header">
         <h1>todos</h1>
+        <!--<a href="#/test" onclick="console.info(window.location.href)">test</a>-->
         <input class="new-todo" autofocus autocomplete="off" placeholder="需要做什么?" v-model="newTodo" v-on:keyup.enter="addTodo">
     </header>
     <section class="main" v-show="todos.length" v-cloak>
+        <!--对应checkbox所有选中-->
         <input class="toggle-all" type="checkbox" v-model="allDone">
         <ul class="todo-list">
+            <!--key可以配合v-for复用标签-->
             <li v-for="todo in filteredTodos" class="todo" :key="todo.id" :class="{completed:todo.completed,editing:todo==editedTodo}">
                 <div class="view">
                     <input class="toggle" type="checkbox" v-model="todo.completed">
                     <label v-on:dblclick="editTodo(todo)">{{todo.title}}</label>
                     <button class="destroy" v-on:click="removeTodo(todo)"></button>
                 </div>
+                <!--v-todo-focus为自定义指令 directive-->
                 <input class="edit" type="text" v-model="todo.title" v-todo-focus="todo==editedTodo" v-on:blur="doneEdit(todo)" v-on:keyup.enter="doneEdit(todo)" v-on:keyup.esc="canceEdit(todo)">
             </li>
         </ul>
     </section>
     <footer class="footer" v-show="todos.length" v-cloak>
             <span class="todo-count">
-        		<strong>{{remaining}}</strong>{{remaining|pluralize}}离开
+        		<strong>{{remaining}} </strong>{{remaining|pluralize}} 剩下
         	</span>
         <ul class="filters">
             <li><a href="#/all" :class="{selected:visibility=='all'}">所有</a></li>
@@ -49,6 +53,7 @@
     var todoStorage={
         fetch:function(){
             var todos=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]')
+            // js 数组索引可以字符串化
             todos.forEach(function(todo,index){
                 todo.id=index
             })
@@ -59,7 +64,6 @@
             return localStorage.setItem(STORAGE_KEY,JSON.stringify(todos))
         }
     }
-
 
     var filters={
         all:function(todos){
@@ -92,14 +96,14 @@
                 deep:true
             }
         },
-        completed:{
+        computed:{
             filteredTodos:function(){
                 return filters[this.visibility](this.todos)
             },
             remaining:function(){
                 return filters.active(this.todos).length
             },
-            allDone:function(){
+            allDone:{
                 get:function(){
                     return this.remaining===0
                 },
@@ -108,6 +112,11 @@
                         todo.completed=value
                     })
                 }
+            }
+        },
+        filters: {
+            pluralize: function (n) {
+                return n === 1 ? '项' : '项s'
             }
         },
         methods:{
@@ -120,11 +129,62 @@
                     id:todoStorage.uid++,
                     title:value,
                     completed:false
-                }),
+                })
+                this.newTodo=''
+            },
+            removeTodo:function(todo){
+                this.todos.splice(this.todos.indexOf(todo), 1)
+            },
+            editTodo: function (todo) {
+                this.beforeEditCache = todo.title
+                this.editedTodo = todo
+            },
+            doneEdit: function (todo) {
+                if (!this.editedTodo) {
+                    return
+                }
+                this.editedTodo = null
+                todo.title = todo.title.trim()
+                if (!todo.title) {
+                    this.removeTodo(todo)
+                }
+            },
+            cancelEdit: function (todo) {
+                this.editedTodo = null
+                todo.title = this.beforeEditCache
+            },
+
+            removeCompleted: function () {
+                this.todos = filters.active(this.todos)
+            }
+        },
+
+        directives: {
+            'todo-focus': function (el, value) {
+                if (value) {
+                    el.focus()
+                }
             }
         }
-
     })
+
+    // handle routing
+    function onHashChange () {
+        /*取出#/all为all reg=/#\/?/*/
+        var visibility = window.location.hash.replace(/#\/?/, '')
+        if (filters[visibility]) {
+            app.visibility = visibility
+        } else {
+            window.location.hash = ''
+            app.visibility = 'all'
+        }
+    }
+
+    window.addEventListener('hashchange', onHashChange)
+    onHashChange()
+
+    // mount
+    app.$mount('.todoapp')
 
 </script>
 </html>
