@@ -8,6 +8,7 @@ var arr=[['小猫','小狗'],['12','13']];
     ['小狗','12'],
     ['小狗','13']
 ];
+
 ```
 var array = [['A', 'B', 'C'], 'F', ['D', 'E'], 1, 'kyo', 'yugi111'];
 var len = array.length;
@@ -37,9 +38,9 @@ function specialSort(start) {
             results.push(temp);
         }
     }
-}
- 
+} 
 specialSort(-1);
 console.log(results);
+
 ```
 [地址](https://zhidao.baidu.com/question/390484183256562165.html)
