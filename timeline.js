@@ -1,5 +1,5 @@
 var timelabelMap = [];
-$(function () {
+$(function() {
     var counter = 0;
     var pageStart = 0;
     var pageSize = 5;
@@ -7,7 +7,7 @@ $(function () {
     var isAjax = false;
     getData(pageStart, pageSize);
     $(window).scroll(
-        function () {
+        function() {
             console.log("isEnd:" + isEnd + " " + "isAjax:" + isAjax);
             if (isEnd == true || isAjax == true) {
                 return;
@@ -23,10 +23,10 @@ $(function () {
     function getData(offset, size) {
         isAjax = true;
         $.ajax({
-            type: 'GET',
-            url: '../static/json/timeline.json',
-            dataType: 'json',
-            success: function (response) {
+            type : 'GET',
+            url : '../static/json/timeline.json',
+            dataType : 'json',
+            success : function(response) {
                 /*						console.info(response.data);*/
                 isAjax = false;
                 var datas = response.data;
@@ -61,7 +61,7 @@ $(function () {
                     isEnd = true;
                 }
             },
-            error: function (xhr, type) {
+            error : function(xhr, type) {
                 alert("Ajax Error");
             }
         });
@@ -110,18 +110,18 @@ function scrollTo(ele, speed) {
         speed = 300;
     if (!ele) {
         $("html,body").animate({
-            scrollTop: 0
+            scrollTop : 0
         }, speed);
     } else {
         if (ele.length > 0)
             $("html,body").animate({
-                scrollTop: $(ele).offset().top
+                scrollTop : $(ele).offset().top
             }, speed);
     }
     return false;
 }
 
-$('.timeline').on('click', '.time-label span', function (e) {
+$('.timeline').on('click', '.time-label span', function(e) {
     scrollTo($(this), 500);
     var hideToggle = $(this).parent().nextAll();
     console.info(hideToggle);
@@ -129,16 +129,16 @@ $('.timeline').on('click', '.time-label span', function (e) {
 });
 
 $('.datetimepicker').datetimepicker({
-    todayBtn: "linked",
-    autoclose: true,
-    format: "yyyy-mm-dd hh:ii:dd",
-    todayHighlight: true,
-    language: "zh-CN"
+    todayBtn : "linked",
+    autoclose : true,
+    format : "yyyy-mm-dd hh:ii:dd",
+    todayHighlight : true,
+    language : "zh-CN"
 });
 $('#date').datetimepicker('update', getNowFormatDateSecond().toString());
 
 // plus
-$('#plus').click(function () {
+$('#plus').click(function() {
     $('.modal-title')[0].innerText = "新增";
     document.getElementById("editForm").reset();
     $('#date').datetimepicker('update', getNowFormatDateSecond().toString());
@@ -146,8 +146,12 @@ $('#plus').click(function () {
 });
 
 // delete
-$('.timeline').on('click', '.delete', function (e) {
+$('.timeline').on('click','.delete',function(e) {
     if (confirm("确定删除这个记录吗 ?")) {
+        // 调用删除接口
+        js调用deleteData接口
+        // 如果数据库删除成功，则操作dom删除页面上标签
+        //成功，则操作DOM
         var deleEle = $(this).parents().eq(2);
         var prevClassName = deleEle.prev()[0].className;
         var next = deleEle.next();
@@ -158,6 +162,8 @@ $('.timeline').on('click', '.delete', function (e) {
             deleEle.prev().remove();
         }
         deleEle.remove();
+        // 如果删除数据库数据失败，这提示无法进行删除操作
+        提示无法删除
     }
 });
 
@@ -166,13 +172,13 @@ var timelineItem = null;
 var dateEle = null;
 var titleEle = null;
 var contentEle = null;
-$('.timeline').on('click', '.update', function (e) {
+$('.timeline').on('click', '.update', function(e) {
     $('.modal-title')[0].innerText = "修改";
     timelineItem = $(this).parent().siblings();
     dateEle = $(timelineItem[0]);
     titleEle = $(timelineItem[1]).children("span");
     contentEle = $(timelineItem[2]);
-    console.log(dateEle + ';' + titleEle + ';' + contentEle);
+    //console.log(dateEle + ';' + titleEle + ';' + contentEle);
     $("#author").val(user);
     document.getElementById("date").value = dateEle.text();
     document.getElementById("content").value = contentEle.text().trim(" ");
@@ -190,6 +196,7 @@ function save() {
     var author = $('#author').val().toString();
     /*date exmaple 2017-04-24*/
     var timelabelEle = $('.time-label').children('span');
+    console.info(timelabelEle.length);
     var day = date.split(' ')[0];
     for (var i = 0; i < timelabelEle.length; i++) {
         timelabelMap[i] = timelabelEle[i].innerText.toString().trim(' ');
@@ -208,25 +215,25 @@ function save() {
         && content.replace(/(^\s*)|(\s*$)/g, "") != "") {
         if (modalTitle == '新增' && isExistInArray(timelabelMap, day)) {
             //调用新增接口
-            $("#editForm").attr("action", "../path/addData");
+            $("#editForm").attr("action","../path/addData");
             var tagInsert = getTagByContent($(".time-label span"), day);
             $(tagInsert).parent().after(timelineTmp);
         } else if (modalTitle == '修改' && isExistInArray(timelabelMap, day)) {
             //调用更新接口
-            $("#editForm").attr("action", "../path/updateData");
+            $("#editForm").attr("action","../path/updateData");
             dateEle.html(date);
             titleEle.html(title);
             contentEle.html(content);
             console.log('123');
         } else {
             //调用新增接口
-            $("#editForm").attr("action", "../path/addData");
+            $("#editForm").attr("action","../path/addData");
             timelabelMap.push(day);
             timelabelMap.sort().reverse();
             console.log(timelabelMap);
             var timelabelDateInsert = getTimelabelDateFromDateArray(timelabelMap, day);
             console.log(timelabelDateInsert);
-            var tag = getTagByContent($(".time-label span"), timelabelDateInsert);
+            var tag = getTagByContent($(".time-label span"),timelabelDateInsert);
             var timelabelTmp = '<li class="time-label"><span class="bg-green">'
                 + day + '</span></li>';
             if (timelabelDateInsert == timelabelMap[timelabelMap.length - 2]

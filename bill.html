@@ -1,39 +1,15 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <title>Billboard</title>
+    <c:import url="styleHeader.jsp"></c:import>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=9">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="expires" content="0">
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta name="_csrf_token" content="a9897df4-d0e4-4f56-9b29-cbb48f8e4e18" />
-    <meta name="_csrf_header" content="X-CSRF-TOKEN" />
-    <!-- style -->
-    <!-- ico -->
-    <link rel="icon" href="/DataPlatform/assets/images/favicon.ico" />
-    <!-- bootstrap 3.3.7-->
-    <link rel="stylesheet" href="/DataPlatform/assets/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <!-- bootstrap-table -->
-    <link rel="stylesheet" href="/DataPlatform/assets/bootstrap/plugins/bootstrap-table/css/bootstrap-table.css" />
-    <!-- bootstrap-select -->
-    <link rel="stylesheet" href="/DataPlatform/assets/bootstrap/plugins/bootstrap-select/css/bootstrap-select.min.css" />
-    <!-- bootstrap-datepicker -->
-    <link rel="stylesheet" href="/DataPlatform/assets/bootstrap/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" />
-
-    <link rel="stylesheet" href="/DataPlatform/assets/bootstrap/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" />
-
-    <!-- app -->
-    <link rel="stylesheet" href="/DataPlatform/assets/app/css/app.css" />
-    <!-- font-awesome -->
-    <link rel="stylesheet" href="/DataPlatform/assets/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-
-
-
-    <link rel="stylesheet" href="/DataPlatform/assets/bootstrap/plugins/bootstrap-table/css/bootstrap-tagsinput.css"/>
+    <%--bootstrap-tagsinput--%>
+    <link rel="stylesheet" href="<c:url value="/assets/bootstrap/plugins/bootstrap-table/css/bootstrap-tagsinput.css"/>"/>
 
 </head>
 <body>
@@ -51,25 +27,25 @@
        data-page-size="20"
        data-row-style="noWrapRowStyle"
        data-filter-control="true"
-
-       data-show-export="true">
-    <thead>
-    <tr>
-        <th data-formatter="runningFormatter" data-align="center"></th>
-        <th data-field="category" data-sortable="true" data-filter-control="select">分类</th>
-        <th data-field="subject" data-sortable="true" data-filter-control="input">主题</th>
-        <th data-field="remarks" data-sortable="true" data-formatter="remarksFormatter" data-cell-style="noWrapCellStyle"
-            data-filter-control="input">内容</th>
-        <th data-field="author" data-sortable="true" data-filter-control="select">作者</th>
-        <th data-field="tag" data-sortable="true" data-formatter="tagsFormatter" data-filter-control="input" data-events="tagsEvents">
-            标签
-        </th>
-        <th data-field="fileName" data-formatter="attachmentFormatter" data-align="center">附件</th>
-        <th data-field="starLevel" data-sortable="true" data-formatter="starLevelFormatter" data-align="center">重要性</th>
-        <th data-field="updatedt" data-sortable="true">更新时间</th>
-        <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents" data-align="center"></th>
-    </tr>
-    </thead>
+<%--data-filter-show-clear="true"--%>
+data-show-export="true">
+<thead>
+<tr>
+    <th data-formatter="runningFormatter" data-align="center"></th>
+    <th data-field="category" data-sortable="true" data-filter-control="select">分类</th>
+    <th data-field="subject" data-sortable="true" data-filter-control="input">主题</th>
+    <th data-field="remarks" data-sortable="true" data-formatter="remarksFormatter" data-cell-style="noWrapCellStyle"
+        data-filter-control="input">内容</th>
+    <th data-field="author" data-sortable="true" data-filter-control="select">作者</th>
+    <th data-field="tag" data-sortable="true" data-formatter="tagsFormatter" data-filter-control="input" data-events="tagsEvents">
+        标签
+    </th>
+    <th data-field="fileName" data-formatter="attachmentFormatter" data-align="center">附件</th>
+    <th data-field="starLevel" data-sortable="true" data-formatter="starLevelFormatter" data-align="center">重要性</th>
+    <th data-field="updatedt" data-sortable="true">更新时间</th>
+    <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents" data-align="center"></th>
+</tr>
+</thead>
 </table>
 
 <!-- 点击新增的弹出框 -->
@@ -85,18 +61,18 @@
 
             <div class="modal-body">
 
-
-                <div class="row">
-                    <div class="col-xs-7 col-xs-offset-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="新增分类" >
-                            <span class="input-group-btn">
+                <c:if test="${edit}">
+                    <div class="row">
+                        <div class="col-xs-7 col-xs-offset-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="新增分类" >
+                                <span class="input-group-btn">
                             <button class="btn btn-default" type="button" onclick="addCategory(this)">确定</button>
                           </span>
-                        </div><!-- /input-group -->
+                            </div><!-- /input-group -->
+                        </div>
                     </div>
-                </div>
-
+                </c:if>
 
                 <form id="editMemosForm" method="post" class="form-horizontal"
                       data-toggle="validator" enctype="multipart/form-data">
@@ -154,7 +130,7 @@
                         <label class="col-xs-3 control-label">附件：</label>
                         <div class="col-xs-7">
                             <input type="file" name="attachment">
-
+                            <%--<p class="help-block" style="hidden: true; font-size: 10px; color: red;"></p>--%>
                             <p class="help-block" style="font-size: 10px; color: red;"></p>
                         </div>
                     </div>
@@ -162,7 +138,7 @@
                     <div class="form-group">
                         <div class="col-xs-7">
                             <input type="hidden" name="id"/>
-                            <input type="hidden" name="_csrf" value="a9897df4-d0e4-4f56-9b29-cbb48f8e4e18"/>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </div>
 
                     </div>
@@ -179,51 +155,15 @@
         </div>
     </div>
 </div>
+<%--modal--%>
 
+<%--content--%>
 
-
-
-
-<!-- script -->
-<!-- jquery 3.2.1 -->
-<script src="/DataPlatform/assets/jquery/3.2.1/jquery.min.js"></script>
-<!-- bootstrap 3.3.7-->
-<script src="/DataPlatform/assets/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- bootstrap-datepicker -->
-<script src="/DataPlatform/assets/bootstrap/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script src="/DataPlatform/assets/bootstrap/plugins/bootstrap-datepicker/js/bootstrap-datepicker.zh-CN.js"></script>
-<!-- bootstrap-table -->
-<script src="/DataPlatform/assets/bootstrap/plugins/bootstrap-table/js/bootstrap-table.js"></script>
-<script src="/DataPlatform/assets/bootstrap/plugins/bootstrap-table/js/bootstrap-table-zh-CN.js"></script>
-<!-- bootstrap-select -->
-<script src="/DataPlatform/assets/bootstrap/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
-<!-- bootstrap-table-export -->
-<script src="/DataPlatform/assets/bootstrap/plugins/bootstrap-table/js/bootstrap-table-export.js"></script>
-<script src="/DataPlatform/assets/bootstrap/plugins/bootstrap-table/js/tableExport.js"></script>
-<!--bootstrap-validator-->
-<script src="/DataPlatform/assets/bootstrap/plugins/bootstrap-validator/validator.min.js"></script>
-<!-- highchart -->
-<script src="/DataPlatform/assets/highcharts/highcharts.js"></script>
-<script src="/DataPlatform/assets/highcharts/modules/no-data-to-display.js"></script>
-<script src="/DataPlatform/assets/highcharts/modules/drilldown.js"></script>
-<script src="/DataPlatform/assets/highcharts/highcharts-more.js"></script>
-<script src="/DataPlatform/assets/app/js/highcharts/highcharts-fn.js"></script>
-
-<script src="/DataPlatform/assets/bootstrap/plugins/bootstrap-multiselect/js/bootstrap-multiselect.min.js"></script>
-
-<!-- app -->
-<script src="/DataPlatform/assets/app/js/app.js"></script>
-
-<!-- bootstrap-table-fn -->
-<script src="/DataPlatform/assets/app/js/bootstrap/bootstrap-table-fn.js"></script>
-<!-- bootstrap-datepicker-fn -->
-<script src="/DataPlatform/assets/app/js/bootstrap/datepicker-fn.js"></script>
-
-
-
-<script src="/DataPlatform/assets/bootstrap/plugins/bootstrap-table/js/bootstrap-tagsinput.min.js"></script>
-
-<script src="/DataPlatform/assets/bootstrap/plugins/bootstrap-table/js/bootstrap-table-filter-control.js"></script>
+<c:import url="scriptHeader.jsp"></c:import>
+<%--bootstrap-tagsinput--%>
+<script src="<c:url value="/assets/bootstrap/plugins/bootstrap-table/js/bootstrap-tagsinput.min.js"/>"></script>
+<%--bootstrap-table-filter-control--%>
+<script src="<c:url value="/assets/bootstrap/plugins/bootstrap-table/js/bootstrap-table-filter-control.js"/>"></script>
 
 <script type="text/javascript">
     $(function () {
@@ -236,7 +176,7 @@
             $("#editMemosModal .modal-title")[0].innerText = "新增";
 
             //获取用户名，填充用户名
-            $("#editMemosModal input[name=author]").val('刘娜');
+            $("#editMemosModal input[name=author]").val('${user.fullName}');
 
             $("#editMemosModal").modal('show');
         });
@@ -407,12 +347,12 @@
 
     function actionFormatter(value, row, index) {
         return ['<a class="edit ml10" href="javascript:void(0)" title="修改" style="float:left;">',
-            '<i class="glyphicon glyphicon-edit"></i>', '</a>',
-
-            '<a class="remove ml10" href="javascript:void(0)" title="删除" style="float:right;">',
-            '<i class="glyphicon glyphicon-remove"></i>', '</a>'
-
-        ].join('');
+                    '<i class="glyphicon glyphicon-edit"></i>', '</a>',
+                <c:if test="${edit}">
+                '<a class="remove ml10" href="javascript:void(0)" title="删除" style="float:right;">',
+                '<i class="glyphicon glyphicon-remove"></i>', '</a>'
+        </c:if>
+    ].join('');
     }
 
     /* action绑定事件 */
