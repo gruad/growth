@@ -1,0 +1,5 @@
+1. [学习路线1](http://www.cnblogs.com/smartXiang/p/6051086.html)
+2. [学习路线2](http://www.cnblogs.com/lhb25/p/vue-turtoials-for-new-starter.html)
+3. [构建单页的实战](https://segmentfault.com/a/1190000005863691)
+4. [构建单页Web大神分享](https://github.com/xufei/blog/issues/5)
+5. [更易上手的前端构建工具cooking](http://elemefe.github.io/cooking/)
