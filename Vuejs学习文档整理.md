@@ -3,3 +3,4 @@
 3. [构建单页的实战](https://segmentfault.com/a/1190000005863691)
 4. [构建单页Web大神分享](https://github.com/xufei/blog/issues/5)
 5. [更易上手的前端构建工具cooking](http://elemefe.github.io/cooking/)
+6. [我终于弄懂了各种前端 build 工具](http://www.yyyweb.com/4545.html)
