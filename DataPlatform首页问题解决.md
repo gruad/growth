@@ -7,3 +7,9 @@
  问题1. 利用contain-wrapper.height()-section.offsetTop>iframe.height()条件，来重置iframe的高度
  
  问题2. 利用$('#homeTabs a:contains("+$(this).text()+")').lenght==0这个条件，来选择是否添加addHomeTabs();
+
+new :
+
+1. closest()
+2. index()
+3. location.hash [hash问题](http://forum.jquery.com/topic/this-hash)
