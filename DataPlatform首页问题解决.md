@@ -13,3 +13,5 @@ new :
 1. closest()
 2. index()
 3. location.hash [hash问题](http://forum.jquery.com/topic/this-hash)
+4. :contains() [菜鸟参考](http://www.runoob.com/jquery/sel-contains.html)
+5. li:not(:has('ul')) 伪类选择器
