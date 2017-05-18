@@ -4,3 +4,4 @@
 4. [构建单页Web大神分享](https://github.com/xufei/blog/issues/5)
 5. [更易上手的前端构建工具cooking](http://elemefe.github.io/cooking/)
 6. [我终于弄懂了各种前端 build 工具](http://www.yyyweb.com/4545.html)
+7. [ 前端资源教程](https://cnodejs.org/topic/56ef3edd532839c33a99d00e)
