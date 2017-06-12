@@ -1,2 +1,3 @@
 - [Nodejs学习和使用经验归纳总结 给入门Nodejs的同学做些指引](http://www.qidiantong.com/p/qianduan/7436.html)
 - [大神node各种学习地址](http://blog.fens.me/series-nodejs/)
+- [Understanding node.js](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb)
