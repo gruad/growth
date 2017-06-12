@@ -3,4 +3,4 @@
 - [Understanding node.js](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb)
 - [Martin Fowlers关于依赖注入的大作](https://martinfowler.com/articles/injection.html)
 - [nodebeginner](https://www.nodebeginner.org/index-zh-cn.html)
-学习node begin中学到的概念：1. 依赖注入。 2. event loop。 3. 函数式编程。 4. 关联数组（associative array）
+学习node begin中学到的概念：1. 依赖注入。 2. event loop[时间询轮][Mixu的博文](http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/)。 3. 函数式编程。 4. 关联数组（associative array）
