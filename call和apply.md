@@ -1,7 +1,8 @@
 fuck，一直记不住这两个函数的使用
 ### 作用：
 
-1. 使用方法 ({}).hasOwnProperty.call(thisObj,var1);
+1. 使用方法 ({}).hasOwnProperty.call(thisObj,var1); 
+Array.prototype.slice.call(arguments);
 
 2. 继承属性和方法
 
