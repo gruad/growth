@@ -2,8 +2,15 @@ fuck，一直记不住这两个函数的使用
 ### 作用：
 
 1. 使用方法 ({}).hasOwnProperty.call(thisObj,var1); 
-Array.prototype.slice.call(arguments);
+Array.prototype.slice.call(arguments);(性能不好，不推荐)
 
+```javascript
+function foo(){
+  bar.apply(null,arguments);
+}
+function bar(a,b,c){
+}
+```
 2. 继承属性和方法
 
 **编者按：这样我们就可以根据各个不同的功能模块分不同的程序员独立开发，最后合并起来，实现了多重继承**
