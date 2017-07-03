@@ -41,7 +41,7 @@
   
   合并排序
   
-  ```
+```javascript
   function merge(left,right){
   var result=[];
   while(left.length>0&&reght.length>0){
