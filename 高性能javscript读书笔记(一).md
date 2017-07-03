@@ -33,8 +33,8 @@
      4.3.1 查找表（lookup table）
      
 ```javascript
-     var results=[result1,result2,result3,...,result11];
-     return results[value];
+var results=[result1,result2,result3,...,result11];
+return results[value];
 ```
      
   4.4 recurson递归和迭代
@@ -42,7 +42,7 @@
   合并排序
   
 ```javascript
-  function merge(left,right){
+function merge(left,right){
   var result=[];
   while(left.length>0&&reght.length>0){
     if(left[0]<rigth[0]){
@@ -53,6 +53,7 @@
   }
   return result.contat(left).contat(right);
 }
+
 function mergeSort(items){
   if(items.length==1){
     return items;
