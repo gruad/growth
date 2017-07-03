@@ -28,13 +28,18 @@
   });
   ```
   4.3 条件表达式（conditionals）
+  
      4.3.1 查找表（lookup table）
+     
      ```
      var results=[result1,result2,result3,...,result11];
      return results[value];
      ```
+     
   4.4 recurson递归和迭代
+  
   合并排序
+  
   ```
   function merge(left,right){
   var result=[];
