@@ -75,3 +75,19 @@ mergeSort(array);
 6:990
 7:1213
 ```
+  4.5 memorization (制表)
+  制表法写factorial函数
+  ```javascript
+  function memorizationFactorial(n){
+    if(!memorizationFactorial.cache){
+      memorizationFactorial.cache={
+        "0":1,
+        "1":1
+      };
+    }
+    if(!memorizationFactorial.cache.hasOwnProperty(n)){
+      memorizationFactorial.cache[n]=n*memorizationFactorial(n-1);
+    }
+    return memorizationFactorial.cache[0];
+  }
+  ```
