@@ -16,14 +16,14 @@
 ### (四) 算法和流程控制 （algorithms and  flow control） 
   4.1 js中有四种loop for while do-while for-in 
   4.2 js 中基于函数的迭代 forEach是面向数组对象的
-  ```
+  ```javascript
   items.forEach(function(value,index,array){
   process(value);
   });
   ```
   等价于jquer中的each函数
   
-  ```
+  ```javascript
   JQuery.each(items,function(index,value){
   process(value);
   });
@@ -32,7 +32,7 @@
   
      4.3.1 查找表（lookup table）
      
-     ```
+     ```javascript
      var results=[result1,result2,result3,...,result11];
      return results[value];
      ```
