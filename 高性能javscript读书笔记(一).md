@@ -44,14 +44,14 @@ return results[value];
 ```javascript
 function merge(left,right){
   var result=[];
-  while(left.length>0&&reght.length>0){
-    if(left[0]<rigth[0]){
+  while(left.length>0&&right.length>0){
+    if(left[0]<right[0]){
       result.push(left.shift());      
     }else{
-      result.push(rigth.shift());
+      result.push(right.shift());
     }
   }
-  return result.contat(left).contat(right);
+  return result.concat(left).concat(right);
 }
 
 function mergeSort(items){
@@ -63,5 +63,15 @@ function mergeSort(items){
     var right=items.slice(middle);
     return merge(mergeSort(left),mergeSort(right));
   }
-}
+};
+var array=[123,22,44,1213,444,990,12,9];
+mergeSort(array);
+0:9
+1:12
+2:22
+3:44
+4:123
+5:444
+6:990
+7:1213
 ```
