@@ -22,6 +22,7 @@
   });
   ```
   等价于jquer中的each函数
+  
   ```
   JQuery.each(items,function(index,value){
   process(value);
@@ -63,4 +64,4 @@ function mergeSort(items){
     return merge(mergeSort(left),mergeSort(right));
   }
 }
-  ```
+```
