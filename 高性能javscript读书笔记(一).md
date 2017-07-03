@@ -12,3 +12,50 @@
   2.4 原型和原型链
   
 ### (三) DOM访问 （2017/7/3）
+
+### (四) 算法和流程控制 （algorithms and  flow control） 
+  4.1 js中有四种loop for while do-while for-in 
+  4.2 js 中基于函数的迭代 forEach是面向数组对象的
+  ```
+  items.forEach(function(value,index,array){
+  process(value);
+  });
+  ```
+  等价于jquer中的each函数
+  ```
+  JQuery.each(items,function(index,value){
+  process(value);
+  });
+  ```
+  4.3 条件表达式（conditionals）
+     4.3.1 查找表（lookup table）
+     ```
+     var results=[result1,result2,result3,...,result11];
+     return results[value];
+     ```
+  4.4 recurson递归和迭代
+  合并排序
+  ```
+  function merge(left,right){
+  var result=[];
+  while(left.length>0&&reght.length>0){
+    if(left[0]<rigth[0]){
+      result.push(left.shift());      
+    }else{
+      result.push(rigth.shift());
+    }
+  }
+  return result.contat(left).contat(rigth);
+}
+
+function mergeSort(items){
+  if(items.length==1){
+    return items;
+  }else{
+    var middle=Math.floor(items.length/2);
+    var left=items.slice(0,middle);
+    var right=items.slice(middle);
+    return merge(mergeSort(left),mergeSort(right));
+  }
+}
+  ```
