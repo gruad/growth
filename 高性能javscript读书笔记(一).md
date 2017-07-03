@@ -78,6 +78,7 @@ mergeSort(array);
   4.5 memorization (制表)
   制表法写factorial函数
   ```javascript
+  
   function memorizationFactorial(n){
     if(!memorizationFactorial.cache){
       memorizationFactorial.cache={
