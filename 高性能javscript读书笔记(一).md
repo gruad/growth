@@ -32,10 +32,10 @@
   
      4.3.1 查找表（lookup table）
      
-     ```javascript
+```javascript
      var results=[result1,result2,result3,...,result11];
      return results[value];
-     ```
+```
      
   4.4 recurson递归和迭代
   
