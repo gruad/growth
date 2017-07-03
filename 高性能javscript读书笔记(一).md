@@ -39,8 +39,7 @@
      
   4.4 recurson递归和迭代
   
-  合并排序
-  
+  合并排序  
   ```
   function merge(left,right){
   var result=[];
