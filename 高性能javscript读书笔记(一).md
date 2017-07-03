@@ -50,9 +50,8 @@
       result.push(rigth.shift());
     }
   }
-  return result.contat(left).contat(rigth);
+  return result.contat(left).contat(right);
 }
-
 function mergeSort(items){
   if(items.length==1){
     return items;
