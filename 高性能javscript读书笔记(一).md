@@ -91,3 +91,32 @@ mergeSort(array);
     return memoizationFactorial.cache[n];
   }
 ```
+```javascript
+
+function memorization(fundamental, cache) {
+	var cache = cache || {};
+	var shell = function(arg) {
+		if (!cache.hasOwnProperty(arg)) {
+			cache[arg] = fundamental(arg);
+		}
+		return cache[arg];
+	};
+	return shell;
+}
+// memorizal function
+var memFactorial = memorization(factorial, {
+	"0" : 1,
+	"1" : 1
+});
+memFactorial(6);
+memFactorial(5);
+memFactorial(4);
+// call the new function
+function factorial(n) {
+	if (n == 0) {
+		return 1;
+	} else {
+		return n * factorial(n - 1);
+	}
+}
+```
