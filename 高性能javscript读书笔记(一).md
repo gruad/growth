@@ -120,3 +120,6 @@ function factorial(n) {
 	}
 }
 ```
+### （五） 字符串和正则表达式
+### （六） 响应接口（responsive interfaces）
+
