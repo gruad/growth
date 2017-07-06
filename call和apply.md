@@ -32,3 +32,44 @@ apply:
 　　如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。 
   
 　　如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。
+  
+  ### 实例
+  ```javascript
+  function Cat() {
+    this.food = "fish";
+    Cat.prototype.say = function () {
+        alert(this.food);
+    }
+}
+var cat1 = new Cat();
+cat1.say();// fish
+var dog = {food: "bone"};
+cat1.say.call(dog);//bone
+  ```
+  ```javascript
+  var value = "global var";
+function mFunc() {
+    this.value = "member var";
+}
+function globalFunc() {
+    alert(this.value);
+}
+globalFunc();//global var
+globalFunc.call(window);//global var
+globalFunc.call(new mFunc());//member var
+  ```
+  ```javascript
+  var ainimals = [{name: "dog", age: "2"}, {name: "cat", age: "4"}];
+for (var i = 0; i < ainimals.length; i++) {
+    var func1 = function (i) {
+        this.print = function () {
+            console.log("#" + i + " " + this.name + " " + this.age);
+        }
+        this.print();
+    }
+    func1.call(ainimals[i], i);
+}
+// #0 dog 2
+// #1 cat 4
+// 去掉函数func1的参数i，call去掉i也是也可以的
+  ```
