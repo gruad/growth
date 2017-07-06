@@ -1,4 +1,5 @@
-fuck，一直记不住这两个函数的使用
+fuck，一直记不住这两个函数的使用 
+# obj1.func1.call(obj2) 把对象obj1的方法func1应用给obj2对象。
 ### 作用：
 
 1. 使用方法 ({}).hasOwnProperty.call(thisObj,var1); 
