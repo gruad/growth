@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo4</title>
+	<script type="text/javascript" src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<ol>
+			<li v-for="todo in todos">{{todo.text}}</li>
+		</ol>
+	</div>
+	<script type="text/javascript">
+		var app4=new Vue({
+			el:"#app",
+			data:{
+				todos:[
+					{text:"learning javascript"},
+					{text:"learning vue"},
+					{text:"learning me"}
+					]
+			}
+		})
+	</script>
+</body>
+</html>

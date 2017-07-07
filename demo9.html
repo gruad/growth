@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>demo8</title>
+    <script type="text/javascript" src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="demo">{{ fullName }}</div>
+    <script type="text/javascript">
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            fisrtName: 'Job',
+            lastName: 'breyler'
+        },
+        computed: {
+            fullName: {
+                get: function() {
+                    return this.fisrtName + ' ' + this.lastName
+                },
+                set: function(newName) {
+                    var names = newName.split(' ')
+                    this.fisrtName = names[0]
+                    this.lastName = names[names.length - 1]
+                }
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>

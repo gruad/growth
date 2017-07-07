@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>demo12</title>
+    <script type="text/javascript" src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- Vue 组件的学习 -->
+    <div id="example">
+        <p>{{total}}</p>
+        <increment-counter v-on:increment="incrementTotal"></increment-counter>
+        <increment-counter v-on:increment="incrementTotal"></increment-counter>
+        < app - layout>
+            < container>
+            <header>
+                < slot name="header">< /slot>
+            </header>
+            < main>
+                < slot>< /slot>
+            < /main>
+            <footer>
+                < slot name="footer">< /slot>
+            </footer>                
+            < /container>
+        < /app-layout>
+
+        <app-layout>
+            <h1 slot="header">nihao</h1>
+            <p>haha</p>
+            <p>shiwo</p>
+            <p slot="footer">lalala</p>
+        </app-layout>
+    </div>
+    <script type="text/javascript">
+    Vue.component('terms-of-service',{
+        template:'\
+        <div v-once>\
+            <h1>terms-of-service</h1>\
+            <div>content</div>\
+        </div>\
+        '
+    })
+
+    Vue.directive('focus',{
+        inserted:function(el){
+            el.focus()
+        }
+    })
+    </script>
+</body>
+
+</html>
