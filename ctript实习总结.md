@@ -1,6 +1,4 @@
 ### 1. 首页改版
-所用技术：
-
 关键词：bootstrap nav-tab iframe AdminLTE框架 导航树tree
 
 工作内容：中间自己没有使用框架的时候，曾自己构造tree.
@@ -42,19 +40,39 @@
                 }
 ```
 ### 2. 智库实现
-所用技术：
+关键词：modal模拟框 bootstrap-tagsinput制作标签 bootstrap-table ajax 分页（前端分页，一次请求全部数据）tooltips 弹出框popover
 
-关键词：
+工作内容：中间自己摸索一段时间
 
-工作内容和收获：
+面试回答：做的是一个用来记录项目组的成员记录公告或存放文件的页面，类似公告一样，主要是bootstrap-table布局展示，作者，日期，事项，标签啦，附件啦等等
+         ，可以增删改查。
 
-面试回答：
+遇到难点：1.修改的时候，有附件则带不过去，就是modal中，只能给附件处一个提示，提交则覆盖。
 
-遇到难点和解决方法：
+解决方法：暂未解决。
+
+代码：
+```javascript
+    // 附件列格式化
+    function attachmentFormatter(value, row, index) {
+        var a = '';
+        var arr = ["jpg", "jpeg", "png", "gif", "bmp"];
+        if (value != null && value != '') {
+            if (arr.toString().indexOf(value.split(".")[1]) > -1) {
+                a = ['<a href="../docUtil/download-document-billboard-' + row['docId'] + '" title="' + value + '">'
+                    ,'<i class="glyphicon glyphicon-picture" style = "font-size:30px;"></i>',
+                    '</a>'].join('');
+            } else {
+                a = ['<a class="file" href="../docUtil/download-document-billboard-' + row['docId'] + '" title="' + value + '">'
+                    ,'<i class="glyphicon glyphicon-file" style = "font-size:30px;"></i>',
+                    '</a>'].join('');
+            }
+        }
+        return a;
+    }
+```
 
 ### 3. 时间轴实现
-所用技术：
-
 关键词：
 
 工作内容和收获：
