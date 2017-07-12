@@ -13,7 +13,7 @@
          2.当tab中的不存在时候，再调用addHomeTabs函数添加。
 
 右侧结构：
-```javascript
+```html
 <div class="content-warpper">
  <section class content-header>
    <ul class="nav nav-tab>
