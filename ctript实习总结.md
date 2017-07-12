@@ -81,13 +81,21 @@
 
 遇到难点和解决方法：：
       1.插入时候的位置如何处理排序。timelabel排序，寻找插入位置，根据不同的插入位置，不同的插入顺序。
+      
       2.分页加载。一次加载5条，服务器端分页，limit offset,size;
+      
       3.延迟加载。写个延迟加载的函数，delaytime(fn,time)
+      
       4.新增图片上传的问题和图片预览。未解决。document.getElementById("file").files:API返回一个对象files包含很多属性。
+      
       5.搜索提示。bootstrap-tokenfield
+      
       6.不同事件插入旗帜标记。flag=0||1,根据i的name属性值来显示或者不显示
+      
       7.有重要性的事件下timelabel要变色标记。
+      
       8.分类的多标签实现。
+      
 代码：
 
 1.延迟加载的函数
@@ -194,6 +202,28 @@ function appendTimelineItem(array) {
 			$(".timeline").append(timelabelTmp).append(timelineItemTmp);
 		}
 	}
+}
+```
+4.多标签的初始化渲染
+```javascript
+// subject标签组格式化函数
+var btnarray = [ "primary", "success", "warning", "danger" ];
+function subjectTagFormatter(value) {
+	var btntags = [];
+	if (value != null && value != '') {
+		var items = value.split(',');
+		for (var i = 0, len = items.length; i < len; i++) {
+			var btnid = (i + 1) % btnarray.length;
+			if (btnid == 0) {
+				btnid = btnarray.length - 1;
+			} else {
+				btnid = btnid - 1;
+			}
+			btntags[i] = '<button type="button" onclick="btnClickHandler(this.innerHTML)" class="tagbtn btn btn-'
+					+ btnarray[btnid] + ' btn-xs">' + items[i] + '</button>';
+		}
+	}
+	return btntags.join(" ");
 }
 ```
 
