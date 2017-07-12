@@ -227,12 +227,10 @@ function subjectTagFormatter(value) {
 }
 ```
 
-### 4. 其他待补充
-所用技术：
+### 4. 集团断美、竞争圈、城市转化率
+所用技术：ajax查询、bootstrap-table、Highchart、bootstrap-select、baiduMap、
 
-关键词：
-
-工作内容和收获：
+工作内容：Highchart根据请求数据，配置并不难。
 
 面试回答：
 
