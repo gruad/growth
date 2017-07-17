@@ -77,7 +77,103 @@
 
 工作内容：form提交到iframe
 
-面试回答：见下文
+面试回答：见下文:插入刷新之后，我做的如何找到插入的那个元素，分两种一种分页一种不分页。
+
+不分页：把刷新前的日期存入到localStorage中，一次获取所有的timelabel存入localStorage中
+```javascript
+// getData加载全部数据函数
+function getData() {
+	isAjax = true;
+	$.ajax({
+		type : 'GET',
+		url : '../queryPage',
+		data : {
+			text : 'select * from app_timeline order by date desc ;'
+		},
+		success : function(response) {
+			console.log(response);
+			var len = response.length;
+			appendTimelineItem(response);
+			$("i[name=0]").addClass("hide");
+			showNoMore();
+			localStorage.setItem("timelabel", JSON.stringify(timelabelMap));
+			// 滚动到插入元素的位置
+			searchAfterSave();
+			console.info(timelabelMap);
+			console.log("getData Success !");
+		},
+		error : function(xhr, type) {
+			alert("getData Error !");
+		}
+	});
+}
+```
+```javascript
+// 找到滚动到改变的元素位置
+function searchAfterSave() {
+	var date = localStorage.getItem("date");
+	if (date != null && date != "") {
+		scrollTo($("li.time-label span:contains(" + date + ")"), 1000);
+		localStorage.removeItem("date");
+		localStorage.removeItem("timelabel");
+	}
+}
+```
+不分页的就复杂很多，有递归出现：也是刷新前存入到localStorage中,同时为了防止触动或者要触动scroll滚动加载函数，需要定义一个isSearch来控制变量正常。
+```javascript
+// getData加载一页数据函数
+function getData(offset, size) {
+	isAjax = true;
+	$.ajax({
+		type : 'GET',
+		url : '../queryPage',
+		data : {
+			text : 'select * from app_timeline order by date desc limit '
+					+ offset + ',' + size + ';'
+		},
+		success : function(response) {
+			console.log(response);
+			isAjax = false;
+			$("#loading").addClass("hide");
+			var len = response.length;
+			appendTimelineItem(response);
+			$("i[name=0]").addClass("hide");
+			localStorage.setItem("timelabel2", JSON.stringify(timelabelMap));
+			searchAfterSave2();
+			console.info(timelabelMap);
+			if (len < size) {
+			isEnd = true;
+			showNoMore();
+			}
+			console.log("getData Success !");
+		},
+		error : function(xhr, type) {
+			alert("getData Error !");
+		}
+	});
+}
+```
+```javascript
+// 找到滚动到改变的元素位置
+var isSearch = false;// 是否是保存才触发的
+function searchAfterSave2() {
+	var date = localStorage.getItem("date2");
+	var timelabel = localStorage.getItem("timelabel2");
+	if (date != null && date != "") {
+		if (timelabel.indexOf(date) == -1) {
+			isSearch = true;
+			getData(pageSize * (++counter), pageSize);
+		} else {
+			scrollTo($("li.time-label span:contains(" + date + ")"), 1000);
+			localStorage.removeItem("date2");
+			localStorage.removeItem("timelabel2");
+			isSearch = false;
+			return;
+		}
+	}
+}
+```
+
 
 遇到难点和解决方法：：
       1.插入时候的位置如何处理排序。timelabel排序，寻找插入位置，根据不同的插入位置，不同的插入顺序。
