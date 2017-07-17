@@ -173,7 +173,28 @@ function searchAfterSave2() {
 	}
 }
 ```
-
+```javascript
+	// 滚动下拉监听
+	$(window).scroll(function() {
+				console.log("isEnd:" + isEnd + " " + "isAjax:" + isAjax);
+				if (isEnd == true || isAjax == true) {
+					return;
+				}
+				// 当滚动到页面底部，则加载下一页
+				if ($(document).height() - $(this).scrollTop()
+						- $(this).height() < 100) {
+							if (!isSearch && !$("#noMore").length
+									&& param.length == 0) {
+						$("#loading").removeClass("hide");
+						delayTime(function() {
+							counter++;
+							pageStart = counter * pageSize;
+							getData(pageStart, pageSize);
+						}, 1000);
+					}
+					}
+			});
+```
 
 遇到难点和解决方法：：
       1.插入时候的位置如何处理排序。timelabel排序，寻找插入位置，根据不同的插入位置，不同的插入顺序。
