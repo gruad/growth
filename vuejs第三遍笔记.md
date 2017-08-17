@@ -91,7 +91,7 @@ fontSize:12
 </template>
 ```
 24. ** v-show会始终保持在DOM中，只是切换display属性值。
-### 5. 列表渲染（v-for）
+### 6. 列表渲染（v-for）
 25. 基本用法
 ```html
 <ul id="example-1">
@@ -121,7 +121,7 @@ computed:{
   }
 }
 ```
-### 事件处理器
+### 7. 事件处理器
 27. 基本用法:监听事件-方法事件处理器-内联事件处理器
 ```
 <div id="example-1">
@@ -132,7 +132,48 @@ data:{
   counter:0
 }
 ```
-### 6.表单控件绑定
+### 8.表单控件绑定(v-model)
+28. 选择列表
+```
+<div id="example">
+  <select v-model=‘selected’>
+    <option disabled value="">请选择</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <span>selected:{{selected}}</span>
+</div>
+data:{
+  selected:""
+}
+```
+### 9. 组件(component)
+29. 组件 (Component) 是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素，Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 is 特性扩展。
+30. 组件定义的两种方式1.全局注册组件。2.局部注册组件
+```
+<div>
+  <my-component></my-component>
+</div>
+Vue.component('my-component',{
+template:"<duv>a component</div>"
+});
+new Vue({});
+```
+```
+var Child={template:"<div>a child component</div>"}
+new Vue({
+...,
+components:{
+  'my-component':Child
+}
+})
+```
+31. 通过 Vue 构造器传入的各种选项大多数都可以在组件里用，**但data属性在组件里，必须是函数**
+32. 子父组件需要通信，父组件通过props传递数据给子组件(子模板)，子组件通过events把事件传递给父组件。**props down events up**
+33. slot内容分发，就是位置插槽，作为组件组合时候，父组件模板替换子组件模板中的slot.
+34. 如果slot无name，则父组件替换slot，如果父组件内容为空，才显示slot中内容。如果有name的slot，则父组件匹配对应name，没有的这替换没name的slot。
+如果子组件没有默认的 slot，这些找不到匹配的内容片段将被抛弃。
 
 
 
