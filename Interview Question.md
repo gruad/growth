@@ -2,12 +2,12 @@
 
 # 总结面试中的基础知识，仅供自己参考查阅
 
-- [1.CSS](#1.CSS)
+- ### 1. CSS
+- ### 2. HTML
+- ### 3. JavaScript
+- ### 4. Vuejs
+- ### 5. Nodejs
 
-- [2.HTML](#2.HTML)
-2. javascript API的返回值
-1. vuejs
-2. nodejs
 ### 1.CSS
 ### 2.HTML
 1. 块级标签和行内标签的区别？（在标准文档流中）
