@@ -9,9 +9,27 @@
 - ### 5. Nodejs
 
 ### 1.CSS
-### 2.HTML
-1. 块级标签和行内标签的区别？（在标准文档流中）
+#### 2. 盒模型
+答：
 
+1。分标准盒模型width只是content的宽。整个宽allWidth=width+padding*2+border*2+margin*2。而早期IE5.6等width就是整个盒子的宽度boxWidth。
+
+#### 3. position：fixed absolute relative static 
+1. static 它还在正常的文档流中，设置top等无用（不会移动）
+
+2. fixed 它相对浏览器窗口定位，即使滚动，它也不动。
+
+3. relative 它还在文档流，设置top等有效，但它在正常文档流（移动前的位置）中的位置还是保留的。* *（相对定位元素经常被用来作为绝对定位元素的容器块。）**
+
+4. absolute 它脱离文档流，原来站的位置不保留，它相对于最近定位的父元素定位，如果没有定位的元素，则相对于Html标签。
+**absolute 定位的元素和其他元素重叠，所以使用z-index觉得层次**
+
+### 4. flaot 浮动:left rigth,none,inherit
+答：
+浮动也是布局的一种方式（**脱离文档流，不占原来位。div改变成inline-block 行内元素改变成block**），多用于图片，作用在左右方向，对于应用浮动的标签，会影响其后面的元素重新布局（表现为环绕），前面的不影响。用于clear：both清除浮动的影响。clear:指定不允许元素周围有浮动元素。both,left,right,none,inherit
+
+### 2.HTML
+#### 1.块级标签和行内标签的区别？（在标准文档流中）:难记点如何记忆什么是行内标签——行内行内，一行内多个
 答：区别
 
 1.块级标签独占一行，行内标签排列在同一行。
@@ -25,5 +43,6 @@
 5.inline-block即具有行内标签的属性又有块级标签的属性。
 
 **使用注意事项：块级元素可以包含行内元素和块级元素。行内元素不能包含块级元素。**
+[重要区别](https://github.com/qiu-deqing/FE-interview#display-block%E5%92%8Cdisplay-inline%E7%9A%84%E5%8C%BA%E5%88%AB)
 [参考1](http://www.cnblogs.com/malinlin/p/4800683.html)
 [参考2](http://blog.csdn.net/sykent/article/details/7738408)
