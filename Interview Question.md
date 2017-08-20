@@ -50,6 +50,7 @@
 总结的太好了，条理清晰，记住所有的都是相对父元素。子元素分定宽高和不知道宽高用calc（表达式计算）:表达式中+-以空格分割
 display:flex需要配合align-items:center实现居中justify-content:center(在x轴上的对齐方式)
 [把简单做好也不简单-css水平垂直居中](https://xdlrt.github.io/2016/12/15/2016-12-15/)
+[以图片为子元素的居中和垂直](http://www.jianshu.com/p/a7552ce07c88?winzoom=1)
 calculate [ˈkælkjəˌlet] vt&vi..计算;估计;打算，计划;旨在
 [calc](http://www.w3cplus.com/css3/how-to-use-css3-calc-function.html)
 
