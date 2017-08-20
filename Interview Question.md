@@ -52,9 +52,29 @@ calculate [ˈkælkjəˌlet] vt&vi..计算;估计;打算，计划;旨在
 [以图片为子元素的居中和垂直](http://www.jianshu.com/p/a7552ce07c88?winzoom=1)
 [以图片为子元素的居中和垂直](http://www.jianshu.com/p/a7552ce07c88?winzoom=1)
 ### GET和POST
-面试回答：首先他们都是http中干建筑method的值，简单点儿说，一个用于获取数据，一个用于修改数据。都是与服务器交互的，具体的请参考RFC文档。我看过他们的rfc文档。网上有很多关于传递传递html中的区别，1.get附加在url上，post附件中body中。2.get因为附加在url上，所以url有长度限制(服务器也不傻，给个很长的url增加负担解析时间，所以也会限制)，2048个字符。body没有，所以post没有。3.安全上get因为附加在url，虽然可以encode但是还是不安全，而post在body中安全些，当然相对的啊，可以抓包。4.服务端获取GET请求参数用Request.QueryString，post获取是request.Form。
+面试回答：首先他们都是http中干建筑method的值，简单点儿说，一个用于获取数据，一个用于修改数据。都是与服务器交互的，具体的请参考RFC文档。我看过他们的rfc文档。网上有很多关于传递传递html中的区别，1.get附加在url上，post附件中body中。2.get因为附加在url上，所以url有长度限制(服务器也不傻，给个很长的url增加负担解析时间，所以也会限制)，2048个字符。body没有，所以post没有。3.安全上get因为附加在url，虽然可以encode但是还是不安全，而post在body中安全些，当然相对的啊，可以抓包。4.服务端获取GET请求参数用Request.QueryString，post获取是request.Form。5.get请求会被缓存，post不会。
 request for comments
 [RFC文档get](https://tools.ietf.org/html/rfc2616#section-9.3)
 [RFC文档post](https://tools.ietf.org/html/rfc2616#section-9.5)
 [不再以讹传讹，GET和POST的真正区别](http://www.cnblogs.com/nankezhishi/archive/2012/06/09/getandpost.html)
 [浅谈HTTP中Get与Post的区别](http://www.cnblogs.com/hyddd/archive/2009/03/31/1426026.html)
+[99%...](https://mp.weixin.qq.com/s?__biz=MzI3NzIzMzg3Mw==&mid=100000054&idx=1&sn=71f6c214f3833d9ca20b9f7dcd9d33e4#rd)
+
+### HTTP缓存（浏览器缓存机制）
+我的理解：reponse header中和缓存有关的字段。1.cache-control(expries)2.Last-modified3.ETag4.Vary(Accept-Encoding)
+request header中和缓存有关的字段:1.if-modified-Since(if-no-modified)=last-modified2.if-match(if-no-match)=ETag
+1.主要还是基于http请求和回应。**当然最重要的要看requestheader的设置cache-Control:no-cache（expires是1.0中的会被覆盖。）**
+还有就是刷新F5是直接跳过缓存的，直接请求服务器。浏览器一般会先查看是否过期，然后判断资源是否更新。
+
+2.第一次请求一个路径下的index.html。服务器会返回（reponse header中）三个和缓存有关的字段：1.过期时间expries。2.文件最后修改时间Last-modified。3.根据返回的文件内容生成的Entity Tag简写：ETag。
+
+3.就是第二次请求的过程（request header），如果没有过期，就直接使用缓存的（from cache）。
+
+4.（**判断资源是否更新**）如果过期了，就发起request请求，把1.文件修改时间（Last-modified）2.ETag，发给服务器对比，如果都没有变，这服务器返回304，直接利用缓存。
+
+5.如果有一个变化，这重新返回，同过程2，写入三个主要字段。
+
+[浏览器HTTP缓存原理分析](http://www.cnblogs.com/tzyy/p/4908165.html)
+[浏览器缓存机制剖析](http://web.jobbole.com/91084/?utm_source=blog.jobbole.com&utm_medium=relatedPosts)
+[彻底弄懂 Http 缓存机制 - 基于缓存策略三要素分解法](https://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&mid=2653578381&idx=1&sn=3f676e2b2e08bcff831c69d31cf51c51&key=dde62796d24517c892043e67f2520e046c13fc0558822ef7ba7fbe8003ddde05e22230fb4ccb2c31133df2a507940c5d4561c7b4f4570969a47cf1388ff57e4bfea70a3810f3fc805e2a5d9aa3192439&ascene=0&uin=MTM4MjU5NzA0MA%3D%3D&devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.11.6+build(15G1212)&version=12010110&nettype=WIFI&fontScale=100&pass_ticket=n3plsW%2FV7Vb6O9hKzPNig5MYpXUoJo3tNUNxhJ5Jh6e9AS%2BRXmvJPbIzUeUmL3S2)
+
