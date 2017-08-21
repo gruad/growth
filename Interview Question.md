@@ -24,6 +24,7 @@
 答：
 
 1。分标准盒模型width只是content的宽。整个宽allWidth=width+padding*2+border*2+margin*2。而早期IE5.6等width就是整个盒子的宽度boxWidth。
+通过设置:box-sizing:content-box（标准的）||border-box（IE早期的）||inherit三种来选择哪个模式
 
 ### 3. position：fixed absolute relative static 
 答：
