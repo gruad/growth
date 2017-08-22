@@ -1,7 +1,8 @@
 ### 1. typeof(0)==='number'
 ### 2. Object.prototype.toString.call(0)==='[object Number]'
 
-# 使用 hasOwnProperty 方法判断属性是否存在:返回布尔值[MDN]（https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty）
+# 使用 hasOwnProperty 方法判断属性是否存在:返回布尔值
+[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty)
 用法：
 ```javascript
 Object.hasOwnproperty('someProperty')
