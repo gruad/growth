@@ -183,6 +183,11 @@ function route(handle, pathname) {
 
 exports.route = route;
 ```
+
+### 阻塞和非阻塞
+> Node一向是这样来标榜自己的：“在node中除了代码，所有一切都是并行执行的”。
+
+>这句话的意思是说，Node.js可以在不新增额外线程的情况下，依然可以对任务进行并行处理 —— Node.js是单线程的。它通过事件轮询（event loop）来实现并行操作，对此，我们应该要充分利用这一点 —— 尽可能的避免阻塞操作，取而代之，多使用非阻塞操作。
 ###  原文
 [www.nodebeginner.org](https://www.nodebeginner.org/index-zh-cn.html#javascript-and-nodejs)
 
