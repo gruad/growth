@@ -92,3 +92,31 @@ target.addEventListener(type,handle,use Capture Options);
 ** 取消冒泡行为：1.event.stopPropagation();2.IE的方式：event.cancelBubble=true;**
 答：说到这就要从网景与微软的浏览器的大战开始说起，网景在navigator中实现了捕获事件系统，而相反微软在IE中实现了冒泡事件系统。这两种系统的区别在于当事件发生时，相关元素的响应优先级不同。
 
+### 9. CSS中的媒体查询
+```css
+@media mediatype and|not|only (media feature){
+  CSS-Code
+}
+```
+```css
+@media only screen and (media feature){
+  CSS-Code
+}
+```
+```css
+@media not print and (media feature){
+  CSS-Code
+}
+```
+```css
+@media screen and (min-width:300px) and (max-width:500px){
+  CSS-Code
+}
+```
+你也可以针对不同的媒体使用不同 stylesheets :
+
+```html
+<style type="text/css" media="mediatype and|not|only (media feature)" src="xxx.css">
+</style>
+```
+
