@@ -77,7 +77,26 @@
 
 工作内容：form提交到iframe
 
-面试回答：见下文:插入刷新之后，我做的如何找到插入的那个元素，分两种一种分页一种不分页。
+面试回答：见下文:插入刷新之后，我做的如何找到插入的那个元素，分两种一种分页一种不分页。**刷新之后，滚动到插入的那个元素：定义一个scrollTo($el,speed)函数**
+
+```javascript
+// 滚动函数
+function scrollTo(ele, speed) {
+	if (!speed)
+		speed = 300;
+	if (!ele) {
+		$("html,body").animate({
+			scrollTop : 0
+		}, speed);
+	} else {
+		if (ele.length > 0)
+			$("html,body").animate({
+				scrollTop : $(ele).offset().top
+			}, speed);
+	}
+	return false;
+}
+```
 
 不分页：把刷新前的日期存入到localStorage中，一次获取所有的timelabel存入localStorage中
 ```javascript
