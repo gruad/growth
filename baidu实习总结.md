@@ -26,3 +26,14 @@
 
 3. extendreport用于美化生成的测试报告。
 
+### 查看selenium生成报告无非以下几种：
+
+1. Eclipse+Junit 这种最简单但是局限在于只能在Eclipse里看，这个就是用最原生的Junit单元测试框架。
+
+2. Junit+Ant 用Ant来驱动Selenium执行，会生成一个xml，通过xsl样式表来形成一个html的报告，报告比较全面，但是样式和内容的自定义能力比较差。
+
+3. Testng的报告，也是Html的格式。
+
+4. 自定义的report，基本上用assert或者log来结合做一个report，直接写html标签来实现，这样的格式自定义比较强，但是需要编码功底，至于样式就看个人能力了。
+
+5. 这里我推荐一个jar包 Extentreport  基于这个jar包来生成的html不仅美观而且可读取强，如果不满意里面的排列和内容还可以自定义，是个生成html report的利器。
