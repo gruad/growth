@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,3 +83,4 @@ JSON.parse()
 </script>
 </body>
 </html>
+```
