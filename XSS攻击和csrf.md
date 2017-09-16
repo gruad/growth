@@ -1,7 +1,8 @@
 ### XSS（Cross Site Scripting）:跨站脚本攻击
 为了和（Cascading Style Sheet）的缩写CSS区别，故将跨站脚本攻击缩写为XSS。
 恶意攻击者往Web页面里插入恶意Script代码，当用户浏览该页之时，嵌入其中Web里面的Script代码会被执行，从而达到恶意攻击用户的目的。
-[如何防御XSS](http://hyuhan.com/2017/06/27/web-security-csrf/)
+
+[如何防御XSS](http://hyuhan.com/2016/09/09/client-script-security/)
 
 ### CSRF(Cross site request Forgrey):跨站请求伪造。也被称为“One Click Attack”或者Session Riding。常缩写成CSRF或XSRF.
 
